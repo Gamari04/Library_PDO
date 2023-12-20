@@ -25,19 +25,51 @@ class User
         $this->email = $email;
         $this->password = $password;
         $this->phone = $phone;
-
-        try {
-            $DB = new Database();
-            $this->connection = $DB->getConnection();
-        } catch (PDOException $e) {
-            echo "Error connecting to the database: " . $e->getMessage();
-            // Handle the error, log it, or rethrow if needed
-            exit();
-        }
+        $DB = new Database();
+        $this->connection = $DB->getConnection();
+   
     }
 
-    // ... (getters and setters)
-
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
     public function create()
     {
         try {
@@ -46,9 +78,7 @@ class User
             $stmt_user->bindParam(':name', $this->name);
             $stmt_user->bindParam(':lastname', $this->lastname);
             $stmt_user->bindParam(':email', $this->email);
-            // Hash the password before storing it
-            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-            $stmt_user->bindParam(':password', $hashedPassword);
+            $stmt_user->bindParam(':password',$this->password);
             $stmt_user->bindParam(':phone', $this->phone);
 
             $result_user = $stmt_user->execute();

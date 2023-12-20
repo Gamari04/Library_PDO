@@ -7,7 +7,8 @@ class AuthController
 {
     public function register($name, $lastname, $email, $password, $phone)
     {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
         $user = new User($name, $lastname, $email, $hashedPassword, $phone);
         $result = $user->create();
 
@@ -19,20 +20,27 @@ class AuthController
         }
     }
 
-    public function login($email, $password)
-    {
-        $user = new User(null, null, $email, null, null);
-        $row = $user->getUserByEmail();
-
-        if (isset($row) && password_verify($password, $row['password'])) {
-            // $_SESSION['email'] = $row['email'];
+   public function login($email, $password)
+{
+    $user = new User(null, null, $email, null, null);
+    $row = $user->getUserByEmail();
+    
+    if ($row !== false) {
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['email'] = $row['email'];
             header("Location: ../../index.php");
             exit();
         } else {
-            echo "Invalid email or password";
+            echo "Invalid password";
         }
+    } else {
+        echo "User not found for the given email";
     }
 }
+
+}
+
+
 
 // Check for form submissions
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
