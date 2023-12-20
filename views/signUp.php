@@ -38,12 +38,28 @@ include (__DIR__ .'../../app/models/User.php') ;
           
             <form action="../app/controllers/AuthController.php" method="post">
                 <div class="form-outline mb-4">
-                <label class="form-label d-flex flex-row" for="form3Example3">Full name</label>
-                <input type="text" id="name" class="form-control" name="fullname" />
+                <label class="form-label d-flex flex-row" for="form3Example3">Name</label>
+                <input type="text" id="name" class="form-control" name="name" />
                 <span class="error">invalid name</span>
               
               </div>
             
+              <div class="form-outline mb-4">
+                <label class="form-label d-flex flex-row" for="form3Example3">Last name</label>
+                <input type="text" id="name" class="form-control" name="lastname" />
+                <span class="error">invalid name</span>
+              
+              </div>
+            
+
+
+              <div class="form-outline mb-4">
+              <label class="form-label d-flex flex-row" for="form3Example3">Phone</label>
+                <input type="text" id="phone" class="form-control" name="phone" />
+                <span class="error">invalid phone</span>
+               
+              </div>
+
 
               <!-- Email input -->
               <div class="form-outline mb-4">

@@ -1,5 +1,22 @@
 {
+    "name": "youcode/gestion_biblio",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Salma",
+            "email": "salmaelgmiri04@gmail.com"
+        }
+    ],
+    "require-dev": {
+     "vlucas/phpdotenv":"^5.6"
+    },
+    
     "require": {
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv":"^5.6"
     }
 }
+

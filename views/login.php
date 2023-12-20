@@ -59,7 +59,7 @@
       </div>
 
       <div class="col-lg-6 mb-5 mb-lg-0">
-        <img src="../assets/img/design.PNG" class="w-100 rounded-4 shadow-4"
+        <img src="../public/img/Get the We Heart It app!.jfif" class="w-75 rounded-4 shadow-4"
           alt="" />
       </div>
     </div>
