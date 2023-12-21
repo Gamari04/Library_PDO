@@ -27,9 +27,17 @@ class AuthController
     
     if ($row !== false) {
         if (password_verify($password, $row['password'])) {
-            $_SESSION['email'] = $row['email'];
-            header("Location: ../../index.php");
-            exit();
+            $_SESSION['role'] = $row['role_id'];
+            // $_SESSION['user_id'] = $row['id'];
+            // var_dump($_SESSION['role']);
+            // die();
+            if ( $_SESSION['role'] == '1'){
+                  header("Location: ../../views/admin/adminPannel.php");
+                  exit();
+            }else if ( $_SESSION["role"] == '2'){
+                  header("Location: ../../index.php");
+                  exit();
+            }
         } else {
             echo "Invalid password";
         }
@@ -41,8 +49,6 @@ class AuthController
 }
 
 
-
-// Check for form submissions
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["addUser"])) {
         $name = $_POST['name'];

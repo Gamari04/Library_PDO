@@ -4,6 +4,10 @@ namespace App\models;
 
 use App\database\Database;
 
+use PDOException;
+use PDO;
+
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 class Book{
@@ -15,8 +19,10 @@ class Book{
     private $publication_year;
     private $total_copies;
     private $available_copies;
+    private $cover;
+    private $connection;
 
-    public function __construct($id, $title, $author, $genre, $description, $publication_year, $total_copies, $available_copies)
+    public function __construct($id, $title, $author, $genre, $description, $publication_year, $total_copies, $available_copies,$cover)
     {
         $this->id = $id;
         $this->title = $title;
@@ -26,6 +32,7 @@ class Book{
         $this->publication_year = $publication_year;
         $this->total_copies = $total_copies;
         $this->available_copies = $available_copies;
+        $this->cover = $cover;
         $DB = new Database();
         $this->connection = $DB->getConnection();
     }
@@ -62,6 +69,10 @@ class Book{
     {
         return $this->available_copies;
     }
+    public function getCover()
+    {
+        return $this->cover;
+    }
     public function setId($id)
     {
         $this->id = $id;
@@ -94,6 +105,46 @@ class Book{
     {
         $this->available_copies = $available_copies;
     }
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+    }
     
+    public function addBook()
+    {
+       try{
+          $query="INSERT INTO `book`(`title`,`author`,`genre`,`description`,`publication_year`,`total_copies`,`available_copies`,`cover`) VALUES (:title , :author , :genre , :description , :publication_year , :total_copies , :available_copies , :cover)";
+          $stmt= $this->connection ->prepare($query);
+          $stmt->bindParam(':title', $this->title);
+          $stmt->bindParam(':author', $this->author);
+          $stmt->bindParam(':genre', $this->genre);
+          $stmt->bindParam(':description', $this->description);
+          $stmt->bindParam(':publication_year', $this->publication_year);
+          $stmt->bindParam(':total_copies', $this->total_copies);
+          $stmt->bindParam(':available_copies', $this->available_copies);
+          $stmt->bindParam(':cover', $this->cover);
 
+          $result = $stmt->execute();
+          if($result){
+            return true;
+          }else{
+            return false;
+          }
+       } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+        }
+    }
+    public function getAllBookss()
+    {
+       try {
+           $query = "SELECT * FROM `book`";
+           $stmt = $this->connection->prepare($query);
+           $stmt->execute();
+           return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }

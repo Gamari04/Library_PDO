@@ -112,7 +112,10 @@ class User
     public function getUserByEmail()
     {
         try {
-            $query = "SELECT * FROM `user` WHERE email = :email";
+            $query = "SELECT u.*, ur.role_id, r.name FROM user AS u
+             INNER JOIN user_role AS ur ON u.id = ur.user_id 
+             INNER JOIN role AS r ON ur.role_id = r.id WHERE email=:email";
+        
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':email', $this->email);
             $stmt->execute();
@@ -125,6 +128,12 @@ class User
             return false;
         }
     }
-}
+    // public function deleteUser()
+    // {
+    //     try {
 
+
+    //        }
+    // }
+}
 ?>

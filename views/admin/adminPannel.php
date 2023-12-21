@@ -2,15 +2,10 @@
 
 <?php 
 session_start();
-if(isset($_SESSION['role']) &&  $_SESSION['role']!='admin'){
+if(isset($_SESSION['role']) &&  $_SESSION['role']!='1'){
     header("Location: login.php");
 }
-// include(__DIR__ .'../../includes/header.php');
-
-// require __DIR__ .'../../config/connection.php';
-//     $query = "SELECT * FROM `user`";
-//     $result = mysqli_query($connexion , $query);
-  
+include(__DIR__ .'/../../includes/header.php');
 
 ?>
 <div class="container">
