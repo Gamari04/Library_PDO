@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(isset($_SESSION['role']) &&  $_SESSION['role']!='1'){
+    header("Location: login.php");
+}
 include(__DIR__ . '/../../includes/header.php');
 include(__DIR__ . '/../../app/models/Book.php');
 use App\models\Book;
@@ -106,11 +110,11 @@ $result = $bookss->getAllBookss();
     </div>
 
 
-<div class="pdf-list d-flex justify-content-center">
+<div class="pdf-list d-flex justify-content--start flex-wrap">
     <?php foreach ($result as $book) {
         
         ?>
-         <div class="col-3  ">
+         <div class="col-3 border ">
             <img src="./../../uploades/<?php echo $book['cover']; ?>" class="w-50" alt="Book Cover">
             <div class="card-body">
                 <h5 class="card-title">
@@ -123,16 +127,16 @@ $result = $bookss->getAllBookss();
                         </b></i>
 
                 <p>
-                    <?php echo $book['genre']; ?>
+                  Genre : <?php echo $book['genre']; ?>
                 </p>
                 <p>
-                    <?php echo $book['publication_year']; ?>
+                  Publication Year : <?php echo $book['publication_year']; ?>
                 </p>
                 <p>
-                    <?php echo $book['total_copies']; ?>
+                   Total Copies : <?php echo $book['total_copies']; ?>
                 </p>
                 <p>
-                    <?php echo $book['available_copies']; ?>
+                  Available Copies : <?php echo $book['available_copies']; ?>
                 </p>
 
 

@@ -6,7 +6,11 @@ if(isset($_SESSION['role']) &&  $_SESSION['role']!='1'){
     header("Location: login.php");
 }
 include(__DIR__ .'/../../includes/header.php');
+include(__DIR__ . '/../../app/models/Book.php');
+use App\models\User;
 
+$users = new User('', '', '', '', '');
+$result = $users->getAllUsers();
 ?>
 <div class="container">
         <div class="row mt-4">
@@ -125,20 +129,21 @@ include(__DIR__ .'/../../includes/header.php');
     <thead>
       <th data-field="id">ID</th>
       <th data-field="name">Name</th>
+      <th data-field="Last name">Last Name</th>
       <th data-field="Email">Email</th>
       <th data-field="Role">Role</th>
-      <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+      <th data-field="Phone" data-formatter="operateFormatter" data-events="operateEvents">Phone</th>
       
     </thead>
     <tbody>
- <?php
-    while($row = mysqli_fetch_assoc($result)){
-?>
+    <?php foreach($result as $result1) :?>
       <tr>
-        <td><?php echo $row['id']?></td>
-        <td><?php echo $row['name']?></td>
-        <td><?php echo $row['email']?></td>
-        <td><?php echo $row['role']?></td>
+        <td><?php echo $result1['id']?></td>
+        <td><?php echo $result1['Name']?></td>
+        <td><?php echo $result1['Last name']?></td>
+        <td><?php echo $result1['email']?></td>
+        <td><?php echo $result1['namer']?></td>
+        <td><?php echo $result1['phone']?></td>
         <!-- <td><button  class="btn btn-default"><a href="edit.php?id=<?= $row['id']?>">Edit</a></button></td> -->
         <td><a class="btn btn-link text-dark px-3 mb-0" href="../dashboard/edit.php?id=<?= $row['id']?>"><i class="material-icons text-sm me-2">edit</i>Edit</a></td>
         <td><button  class="btn btn-default"><a href="../dashboard/delete.php?id=<?= $row['id']?>"><lord-icon
@@ -149,7 +154,7 @@ include(__DIR__ .'/../../includes/header.php');
   </div>
       </tr>
       
-      <?php } ?>
+      <?php endforeach; ?>
     </tbody>
   </table>
 </div>

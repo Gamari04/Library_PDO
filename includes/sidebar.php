@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white sidebar " href="index.php">
+          <a class="nav-link text-white sidebar " href="../../views/admin/adminPannel.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -51,7 +51,7 @@
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn sidebar mt-4 w-100" href="#" type="button  " >Upgrade to pro</a>
+        <a class="btn sidebar mt-4 w-100" href="#" type="button" >Upgrade to pro</a>
       </div>
     </div>
   </aside>

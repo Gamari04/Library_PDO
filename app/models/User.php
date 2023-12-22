@@ -128,12 +128,21 @@ class User
             return false;
         }
     }
-    // public function deleteUser()
-    // {
-    //     try {
+    public function getAllUsers()
+    {
+        try {
+            $query = "SELECT u.*, ur.role_id AS roleid, r.name AS namer FROM user AS u
+            INNER JOIN user_role AS ur ON u.id = ur.user_id 
+            INNER JOIN role AS r ON ur.role_id = r.id";
 
-
-    //        }
-    // }
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $row;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 ?>
