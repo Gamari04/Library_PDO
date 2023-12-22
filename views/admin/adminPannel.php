@@ -3,7 +3,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['role']) &&  $_SESSION['role']!='1'){
-    header("Location: login.php");
+    header("Location: ../login.php");
 }
 include(__DIR__ .'/../../includes/header.php');
 include(__DIR__ . '/../../app/models/Book.php');

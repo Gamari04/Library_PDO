@@ -158,7 +158,7 @@ $result = $bookss->getAllBookss();
 
                 <a href="uploads/files/<?= $book['file'] ?>" class="btn btn-primary"
                     download="<?= $book['title'] ?>">Download</a> -->
-                    <a class="btn btn-dark btn-sm " href="">Reserve Now</a>
+                    <a class="btn btn-dark btn-sm " href="views/user/userPannel.php?id=<?= $book['id']?>">Reserve Now</a>
                    
             </div>
         </div>
