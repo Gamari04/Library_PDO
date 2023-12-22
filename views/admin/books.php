@@ -106,13 +106,12 @@ $result = $bookss->getAllBookss();
     </div>
 
 
-<div class="pdf-list d-flex flex-wrap">
+<div class="pdf-list d-flex justify-content-center">
     <?php foreach ($result as $book) {
-        var_dump($book);
         
         ?>
-        <div class="card m-1">
-            <img src="./../../uploades/<?php echo $book['cover']; ?>" alt="Book Cover">
+         <div class="col-3  ">
+            <img src="./../../uploades/<?php echo $book['cover']; ?>" class="w-50" alt="Book Cover">
             <div class="card-body">
                 <h5 class="card-title">
                     <?php echo $book['title']; ?>
@@ -139,10 +138,10 @@ $result = $bookss->getAllBookss();
 
                 <br></b></i>
                 </p>
-                <a href="uploads/files/<?= $book['file'] ?>" class="btn btn-success">Open</a>
+                <!-- <a href="uploads/files/<?= $book['file'] ?>" class="btn btn-success">Open</a>
 
                 <a href="uploads/files/<?= $book['file'] ?>" class="btn btn-primary"
-                    download="<?= $book['title'] ?>">Download</a>
+                    download="<?= $book['title'] ?>">Download</a> -->
             </div>
         </div>
     <?php } ?>
