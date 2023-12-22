@@ -114,7 +114,7 @@ $result = $bookss->getAllBookss();
     <?php foreach ($result as $book) {
         
         ?>
-         <div class="col-3 border ">
+         <div class="col-3  ">
             <img src="./../../uploades/<?php echo $book['cover']; ?>" class="w-50" alt="Book Cover">
             <div class="card-body">
                 <h5 class="card-title">

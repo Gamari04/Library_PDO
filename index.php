@@ -1,3 +1,17 @@
+<?php
+session_start();
+if(isset($_SESSION['role']) &&  $_SESSION['role']!='2'){
+    header("Location: login.php");
+}
+// include(__DIR__ . '../includes/header.php');
+include(__DIR__ . '../app/models/Book.php');
+use App\models\Book;
+
+$bookss = new Book('', '', '', '', '', '', '', '', '');
+$result = $bookss->getAllBookss();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,7 +67,7 @@
             </div>
         </header>
         <!-- Services-->
-        <section class="page-section" id="services">
+        <!-- <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Services</h2>
@@ -86,18 +100,18 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
+                    <h2 class="section-heading text-uppercase">Books</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4"> -->
                         <!-- Portfolio item 1-->
-                        <div class="portfolio-item">
+                        <!-- <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -110,9 +124,51 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-6 mb-4"> -->
+
+
+                    <div class="pdf-list d-flex justify-content--start flex-wrap">
+    <?php foreach ($result as $book) {
+        
+        ?>
+         <div class="col-3  ">
+            <img src="uploades/<?php echo $book['cover']; ?>" class="w-50" alt="Book Cover">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <?php echo $book['title']; ?>
+                </h5>
+                <p class="card-text">
+                    <i><b>By:
+                            <?php echo $book['author']; ?>
+                            <br>
+                        </b></i>
+                <p>
+                  Genre : <?php echo $book['genre']; ?>
+                </p>
+                <p>
+                  Publication Year : <?php echo $book['publication_year']; ?>
+                </p>
+                <p>
+                   Total Copies : <?php echo $book['total_copies']; ?>
+                </p>
+                <p>
+                  Available Copies : <?php echo $book['available_copies']; ?>
+                </p>
+                <!-- <a href="uploads/files/<?= $book['file'] ?>" class="btn btn-success">Open</a>
+
+                <a href="uploads/files/<?= $book['file'] ?>" class="btn btn-primary"
+                    download="<?= $book['title'] ?>">Download</a> -->
+                    <a class="btn btn-dark btn-sm " href="">Reserve Now</a>
+                   
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
+
+
                         <!-- Portfolio item 2-->
-                        <div class="portfolio-item">
+                        <!-- <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -126,7 +182,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
+                       
+
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
                                 <div class="portfolio-hover">
@@ -141,7 +198,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <!-- Portfolio item 4-->
+                        
+
+
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
                                 <div class="portfolio-hover">
@@ -156,7 +215,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                        <!-- Portfolio item 5-->
+                       
+
+
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
                                 <div class="portfolio-hover">
@@ -171,7 +232,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <!-- Portfolio item 6-->
+                     
+
+
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                                 <div class="portfolio-hover">
@@ -185,7 +248,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
         <!-- About-->
