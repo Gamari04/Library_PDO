@@ -11,6 +11,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 class User
 {
+    private $id;
     private $name;
     private $lastname;
     private $email;
@@ -18,8 +19,9 @@ class User
     private $phone;
     private $connection;
 
-    public function __construct($name, $lastname, $email, $password, $phone)
+    public function __construct($id,$name, $lastname, $email, $password, $phone)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
@@ -30,6 +32,14 @@ class User
    
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     public function getName()
     {
         return $this->name;
@@ -144,5 +154,32 @@ class User
             return false;
         }
     }
+    public function deleteUser($id) {
+        try {
+            $query = "DELETE FROM `user` WHERE `id` = :id";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':id', $id);
+    
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function getTotalUsers()
+{
+    try {
+        $query = "SELECT COUNT(id) as total_Users FROM `user`";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['total_Users'];
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
 }
 ?>

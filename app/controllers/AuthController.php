@@ -9,10 +9,11 @@ class AuthController
     {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $user = new User($name, $lastname, $email, $hashedPassword, $phone);
+        $user = new User(null,$name, $lastname, $email, $hashedPassword, $phone);
         $result = $user->create();
 
         if ($result) {
+            // $_SESSION['user_id'] = $row['id'];
             header("Location: ../../views/login.php");
             exit();
         } else {
@@ -22,7 +23,7 @@ class AuthController
 
    public function login($email, $password)
 {
-    $user = new User(null, null, $email, null, null);
+    $user = new User(null,null, null, $email, null, null);
     $row = $user->getUserByEmail();
     
     if ($row !== false) {

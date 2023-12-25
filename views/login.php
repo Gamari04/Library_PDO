@@ -52,7 +52,7 @@
               <button type="submit" name="login" class="btn btn-primary btn-block mb-4">
                 Sign in
               </button>
-              <p>Creat an account <a href="/Full_brief/views/signUp.php">Sign Up</a></p>
+              <p>Creat an account <a href="signUp.php">Sign Up</a></p>
             </form>
           </div>
         </div>

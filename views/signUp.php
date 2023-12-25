@@ -88,7 +88,7 @@ include (__DIR__ .'../../app/models/User.php') ;
               <button type="submit" name="addUser" class="btn btn-primary btn-block mb-4">
                 Sign up
               </button>
-              <p>I have an account <a href="/Full_brief/views/login.php">Sign in</a></p>
+              <p>I have an account <a href="login.php">Sign in</a></p>
             </form>
           </div>
         </div>

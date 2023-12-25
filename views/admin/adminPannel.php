@@ -7,10 +7,18 @@ if(isset($_SESSION['role']) &&  $_SESSION['role']!='1'){
 }
 include(__DIR__ .'/../../includes/header.php');
 include(__DIR__ . '/../../app/models/Book.php');
+include(__DIR__ . '/../../app/models/User.php');
 use App\models\User;
 
-$users = new User('', '', '', '', '');
+
+$users = new User('','', '', '', '', '');
 $result = $users->getAllUsers();
+$total = $users->getTotalUsers();
+use App\models\Book;
+$bookss = new Book('', '', '', '', '', '', '', '', '');
+$row = $bookss->getTotaleBooks();
+$copies = $bookss->getAllTheCopies();
+$available = $bookss->getTotalAvailableCopie();
 ?>
 <div class="container">
         <div class="row mt-4">
@@ -24,8 +32,8 @@ $result = $users->getAllUsers();
                                     <i class="material-icons opacity-10">weekend</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0 text-capitalize">Bookings</p>
-                                    <h4 class="mb-0">281</h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary">Totale Books</b>
+                                    <h4 class="mb-0"> <?php echo $row?></h4>
                                 </div>
                             </div>
 
@@ -44,8 +52,8 @@ $result = $users->getAllUsers();
                                     <i class="material-icons opacity-10">leaderboard</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                                    <h4 class="mb-0">2,300</h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary">Today's Users</b >
+                                    <h4 class="mb-0"><?php echo $total ?></h4>
                                 </div>
                             </div>
 
@@ -65,8 +73,8 @@ $result = $users->getAllUsers();
                                     <i class="material-icons opacity-10">store</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0 text-capitalize ">Revenue</p>
-                                    <h4 class="mb-0 ">34k</h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary ">All The Copies</b>
+                                    <h4 class="mb-0 "><?php echo $copies ?></h4>
                                 </div>
                             </div>
     
@@ -85,8 +93,8 @@ $result = $users->getAllUsers();
                                     <i class="material-icons opacity-10">person_add</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0 text-capitalize ">Followers</p>
-                                    <h4 class="mb-0 ">+91</h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary ">Available Copies</b>
+                                    <h4 class="mb-0 "><?php echo $available ?></h4>
                                 </div>
                             </div>
     
@@ -120,9 +128,9 @@ $result = $users->getAllUsers();
   -->
 
   
-    <div class="col-lg-3 col-sm-6 col-12 mt-3 mb-3">
+    <!-- <div class="col-lg-3 col-sm-6 col-12 mt-3 mb-3">
                   <button class="btn bg-gradient-success w-50 mb-0 toast-btn" type="button" data-target="successToast"><a href="form.php">ADD Client</a></button>
-                </div>
+                </div> -->
   
 
   <table id="fresh-table" class="table">
@@ -144,9 +152,9 @@ $result = $users->getAllUsers();
         <td><?php echo $result1['email']?></td>
         <td><?php echo $result1['namer']?></td>
         <td><?php echo $result1['phone']?></td>
-        <!-- <td><button  class="btn btn-default"><a href="edit.php?id=<?= $row['id']?>">Edit</a></button></td> -->
-        <td><a class="btn btn-link text-dark px-3 mb-0" href="../dashboard/edit.php?id=<?= $row['id']?>"><i class="material-icons text-sm me-2">edit</i>Edit</a></td>
-        <td><button  class="btn btn-default"><a href="../dashboard/delete.php?id=<?= $row['id']?>"><lord-icon
+        <!-- <td><button  class="btn btn-default"><a href="edit.php?id=">Edit</a></button></td>-->
+        <td><a class="btn btn-link text-dark px-3 mb-0" href="../dashboard/edit.php?id="><i class="material-icons text-sm me-2">edit</i>Edit</a></td> 
+        <td><button  class="btn btn-default"><a href="../../app/controllers/admin/deleteUser.php?id=<?= $result1['id']?>"><lord-icon
     src="https://cdn.lordicon.com/skkahier.json"
     trigger="hover"
     style="width:30px;height:30px">

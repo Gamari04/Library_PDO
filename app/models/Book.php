@@ -147,4 +147,84 @@ class Book{
             return false;
         }
     }
+
+    public function getBookById()
+{
+    try {
+        $query = "SELECT * FROM `book` WHERE id =:id";
+    
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+public function getTotaleBooks()
+{
+    try {
+        $query = "SELECT COUNT(id) as total_books FROM `book`";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['total_books'];
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+public function getAllTheCopies()
+{
+    try {
+        $query = "SELECT SUM(total_copies) as all_copies FROM `book`";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['all_copies'];
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+public function getTotalAvailableCopie()
+{
+    try {
+        $query = "SELECT SUM(available_copies) as available_copies FROM `book`";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['available_copies'];
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+public function getAvailableBook()
+{
+    try {
+        $query = "SELECT title, available_copies FROM `book`";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rows;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
 }
