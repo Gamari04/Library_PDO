@@ -107,7 +107,10 @@ $available = $bookss->getTotalAvailableCopie();
                 </div>
             </div>
         </div>
+        <label for="site-search">Search for a Book :</label>
+<input type="search" id="site-search" name="q" class="search_input" />
 
+<button>Search</button>
         <?php
     if(isset($_GET['msg'])){
       $msg = $_GET['msg'];
@@ -175,4 +178,4 @@ $available = $bookss->getTotalAvailableCopie();
 
 
 <script src="https://cdn.lordicon.com/lordicon.js"></script>
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../public/js/bootstrap.bundle.min.js"></script>

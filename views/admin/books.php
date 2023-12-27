@@ -108,9 +108,12 @@ $result = $bookss->getAllBookss();
             </div>
         </div>
     </div>
+    <label for="site-search">Search for a Book :</label>
+<input type="search" id="site-search" name="q" class="search_input" />
 
+<button>Search</button>
 
-<div class="pdf-list d-flex justify-content--start flex-wrap">
+<div class="pdf-list d-flex justify-content--start flex-wrap books">
     <?php foreach ($result as $book) {
         
         ?>
@@ -154,6 +157,7 @@ $result = $bookss->getAllBookss();
 
 
     <script src="../../public/js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/js/Search.js"></script>
 </body>
 
 </html>

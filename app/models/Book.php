@@ -226,5 +226,21 @@ public function getAvailableBook()
         return false;
     }
 }
+public function searchBooks($key) {
+    try {
+        $key = "%{$key}%";
+
+        $query = "SELECT * FROM `book` WHERE title LIKE ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$key]);
+
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $books;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
 
 }

@@ -60,3 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 // $bookss = new BookController();
 // $bookss->getAllBooks($title,$author,$genre,$description,$publication_year,$total_copies,$available_copies,$cover);
+
+$book = new Book(null,$title,$author,$genre,$description,$publication_year,$total_copies,$available_copies,$cover);
+$result=$book->searchBooks($key);
